@@ -8,9 +8,22 @@
 html {
     background-color: #0a0a0a !important;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(151, 229, 17, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(151, 229, 17, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(151, 229, 17, 0.05) 0%, transparent 50%) !important;
+        /* Pontos de luz principais */
+        radial-gradient(circle at 20% 80%, rgba(151, 229, 17, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(151, 229, 17, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(151, 229, 17, 0.08) 0%, transparent 50%),
+        /* Pontos de luz adicionais para profundidade */
+        radial-gradient(circle at 10% 30%, rgba(151, 229, 17, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(151, 229, 17, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 70% 10%, rgba(151, 229, 17, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 30% 90%, rgba(151, 229, 17, 0.04) 0%, transparent 30%),
+        /* Linhas de luz sutis */
+        linear-gradient(45deg, transparent 0%, rgba(151, 229, 17, 0.02) 25%, transparent 50%, rgba(151, 229, 17, 0.02) 75%, transparent 100%),
+        linear-gradient(-45deg, transparent 0%, rgba(151, 229, 17, 0.015) 30%, transparent 60%, rgba(151, 229, 17, 0.015) 90%, transparent 100%) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 200% 200%, 200% 200% !important;
+    background-position: center, center, center, center, center, center, center, 0% 0%, 100% 100% !important;
+    background-attachment: fixed !important;
+    animation: backgroundFloat 20s ease-in-out infinite;
 }
 
 body {
@@ -19,10 +32,37 @@ body {
     color: #ffffff !important;
     background-color: #0a0a0a !important;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(151, 229, 17, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(151, 229, 17, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(151, 229, 17, 0.05) 0%, transparent 50%) !important;
+        /* Pontos de luz principais */
+        radial-gradient(circle at 20% 80%, rgba(151, 229, 17, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(151, 229, 17, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(151, 229, 17, 0.08) 0%, transparent 50%),
+        /* Pontos de luz adicionais para profundidade */
+        radial-gradient(circle at 10% 30%, rgba(151, 229, 17, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 70%, rgba(151, 229, 17, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 70% 10%, rgba(151, 229, 17, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 30% 90%, rgba(151, 229, 17, 0.04) 0%, transparent 30%),
+        /* Linhas de luz sutis */
+        linear-gradient(45deg, transparent 0%, rgba(151, 229, 17, 0.02) 25%, transparent 50%, rgba(151, 229, 17, 0.02) 75%, transparent 100%),
+        linear-gradient(-45deg, transparent 0%, rgba(151, 229, 17, 0.015) 30%, transparent 60%, rgba(151, 229, 17, 0.015) 90%, transparent 100%) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 200% 200%, 200% 200% !important;
+    background-position: center, center, center, center, center, center, center, 0% 0%, 100% 100% !important;
+    background-attachment: fixed !important;
     overflow-x: hidden;
+    animation: backgroundFloat 20s ease-in-out infinite;
+}
+
+/* Animação do background */
+@keyframes backgroundFloat {
+    0%, 100% {
+        background-position: 
+            center, center, center, center, center, center, center,
+            0% 0%, 100% 100%;
+    }
+    50% {
+        background-position: 
+            center, center, center, center, center, center, center,
+            100% 100%, 0% 0%;
+    }
 }
 
 /* Header */
@@ -79,7 +119,7 @@ body {
 
 /* Hero Stats Section */
 .hero-stats-section {
-    padding: 6rem 0;
+    padding: 4rem 0;
     background: transparent;
     margin-top: 80px;
     position: relative;
@@ -754,7 +794,7 @@ body {
 .about {
     position: relative;
     height: 600px;
-    margin-top: 161px;
+    margin-top: 80px;
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -1241,14 +1281,22 @@ body {
 
 .member-image {
     margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 220px;
 }
 
 .member-photo {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 16px;
-    object-fit: cover;
-    border: 4px solid #32CD32;
+    object-fit: contain;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .member-name {

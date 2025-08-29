@@ -140,6 +140,9 @@ body {
     position: relative;
     height: 420px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-overlay {
@@ -152,6 +155,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .hero-overlay::after {
@@ -172,6 +176,9 @@ body {
     text-align: center;
     color: white;
     z-index: 10;
+    width: 90%;
+    max-width: 800px;
+    padding: 0 20px;
 }
 
 .breadcrumb {
@@ -180,6 +187,7 @@ body {
     font-weight: 700;
     color: rgba(235, 236, 237, 1);
     margin-bottom: 1rem;
+    opacity: 0.9;
 }
 
 .page-title {
@@ -189,6 +197,9 @@ body {
     color: white;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Call Card */
@@ -232,7 +243,7 @@ body {
 
 /* Unified About & Construction System Section */
 .unified-about-construction-section {
-    padding: 8rem 0;
+    padding: 6rem 0;
     background-color: #0a0a0a;
     background-image: 
         radial-gradient(circle at 20% 80%, rgba(151, 229, 17, 0.1) 0%, transparent 50%),
@@ -807,7 +818,7 @@ body {
 /* CTA Section */
 .cta-section {
     position: relative;
-    padding: 8rem 0;
+    padding: 6rem 0;
     min-height: 400px;
     overflow: hidden;
     color: white;
@@ -1413,6 +1424,23 @@ body {
 }
 
 @media (max-width: 1024px) {
+    .about-hero {
+        height: 380px;
+    }
+    
+    .hero-content {
+        width: 95%;
+        padding: 0 15px;
+    }
+    
+    .page-title {
+        font-size: 3.2rem;
+    }
+    
+    .breadcrumb {
+        font-size: 16px;
+    }
+    
     .about-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -1441,10 +1469,6 @@ body {
     
     .footer-links {
         grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .page-title {
-        font-size: 3rem;
     }
     
     .about-title {
