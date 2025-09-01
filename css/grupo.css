@@ -376,7 +376,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 0rem;
 }
 
 /* Container específico para as seções das empresas */
@@ -755,7 +755,7 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
 .frame56-container + .frame56-container {
@@ -763,13 +763,13 @@ body {
 }
 
 .frame56-container:last-of-type {
-  margin-bottom: 120px;
-  border-radius: 12px !important;
+  margin-bottom: 80px;
+  border-radius: 0 !important;
 }
  
 .frame56-frame56 {
   width: 100%;
-  max-width: 1180px;
+  max-width: 100%; /* Usar toda a largura disponível do container */
   height: auto;
   display: flex;
   align-items: stretch;
@@ -903,7 +903,7 @@ body {
 /* Seção GrupoMax */
 .grupo-max-section {
   width: 100%;
-  max-width: 1180px;
+  max-width: 1200px;
   background-color: #32CD32;
   padding: 50px 0;
   margin: 120px auto 0 auto;
@@ -911,10 +911,10 @@ body {
 }
 
 .grupo-max-content {
-  max-width: 1180px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 0px;
+  padding: 0 50px;
 }
 
 .grupo-max-title {

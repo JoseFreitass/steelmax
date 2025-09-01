@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function handleScrollAnimations() {
-        const animatedElements = document.querySelectorAll('.feature-card, .stat-card, .project-item, .service-card');
+        const animatedElements = document.querySelectorAll('.feature-card, .stat-card, .service-card');
         
         animatedElements.forEach(element => {
             if (isElementInViewport(element)) {
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize scroll animations
-    const animatedElements = document.querySelectorAll('.feature-card, .stat-card, .project-item, .service-card');
+    const animatedElements = document.querySelectorAll('.feature-card, .stat-card, .service-card');
     animatedElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
