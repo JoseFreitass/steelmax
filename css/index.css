@@ -392,6 +392,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.6;
+    filter: brightness(0.7);
 }
 
 .hero-content {
@@ -1080,6 +1082,13 @@ body {
     margin: 25px 0 60px 0;
 }
 
+/* Link para o grid de projetos */
+.projects-grid-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: 380px 380px 380px;
@@ -1087,11 +1096,103 @@ body {
     gap: 20px;
     max-width: 1180px;
     margin: 0 auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    height: 660px;
+    width: 1180px;
+}
+
+.projects-grid:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.projects-grid:hover .project-image {
+    opacity: 0.6;
+    transform: scale(1.02);
+}
+
+/* Remover hover em dispositivos móveis */
+@media (max-width: 768px) {
+    .projects-grid:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .projects-grid:hover .project-image {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .projects-grid:hover .projects-overlay {
+        opacity: 0;
+    }
+    
+    .projects-grid:hover .plus-icon {
+        transform: none;
+    }
+}
+
+/* Overlay com texto "Ver mais" */
+.projects-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 12px;
+}
+
+.projects-grid:hover .projects-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+}
+
+.overlay-text {
+    font-family: 'Kanit', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.plus-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(50, 205, 50, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.projects-grid:hover .plus-icon {
+    transform: scale(1.1);
 }
 
 .project-main {
     grid-row: span 2;
     height: 660px;
+}
+
+.project-mobile {
+    display: none;
 }
 
 .project-item {
@@ -1110,14 +1211,7 @@ body {
     transition: transform 0.3s ease;
 }
 
-.project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.project-item:hover .project-image {
-    transform: scale(1.05);
-}
+/* Hover individual removido - agora será aplicado ao grid inteiro */
 
 .project-featured {
     position: relative;
@@ -1924,8 +2018,24 @@ body {
     }
     
     .projects-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 15px;
+        height: auto;
+        width: 100%;
+    }
+    
+    /* Esconder todas as imagens exceto a mobile */
+    .project-main,
+    .project-small {
+        display: none;
+    }
+    
+    /* Mostrar apenas a imagem mobile */
+    .project-mobile {
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        height: 300px;
     }
     
     .testimonials {
@@ -2068,11 +2178,22 @@ body {
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+        height: auto;
+        width: 100%;
     }
     
-    .project-main {
-        height: 300px;
-        grid-row: span 1;
+    /* Esconder todas as imagens exceto a mobile */
+    .project-main,
+    .project-small {
+        display: none;
+    }
+    
+    /* Mostrar apenas a imagem mobile */
+    .project-mobile {
+        display: block;
+        grid-column: 1;
+        grid-row: 1;
+        height: 250px;
     }
     
     .testimonials {
