@@ -1239,7 +1239,6 @@ body {
 .footer-logo-image {
     height: 60px;
     width: auto;
-    filter: brightness(0) invert(1);
 }
 
 .footer-contact h3 {

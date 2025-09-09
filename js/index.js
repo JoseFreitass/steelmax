@@ -153,66 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto'; // Restaura scroll
         }
     }
-    // Partners Carousel
-    const partnersContainer = document.querySelector('.partners-container');
-    const partnerSlides = document.querySelectorAll('.partner-slide');
-    const prevBtn = document.querySelector('.carousel-prev');
-    const nextBtn = document.querySelector('.carousel-next');
-    const dots = document.querySelectorAll('.dot');
-    
-    if (partnersContainer && partnerSlides.length > 0) {
-        let currentSlide = 0;
-        const slidesToShow = 4; // Mostrar 4 parceiros por vez
-        const maxSlides = Math.max(0, partnerSlides.length - slidesToShow);
-        
-        function updateCarousel() {
-            const slideWidth = 220; // 200px width + 20px gap
-            const translateX = currentSlide * slideWidth;
-            partnersContainer.style.transform = `translateX(-${translateX}px)`;
-            
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === Math.floor(currentSlide / slidesToShow));
-            });
-        }
-        
-        function nextSlide() {
-            if (currentSlide < maxSlides) {
-                currentSlide++;
-            } else {
-                currentSlide = 0; // Loop back to start
-            }
-            updateCarousel();
-        }
-        
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-            } else {
-                currentSlide = maxSlides; // Loop to end
-            }
-            updateCarousel();
-        }
-        
-        // Event listeners
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        
-        // Dots navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentSlide = index * slidesToShow;
-                if (currentSlide > maxSlides) currentSlide = maxSlides;
-                updateCarousel();
-            });
-        });
-        
-        // Auto-slide (optional)
-        setInterval(nextSlide, 5000); // Change slide every 5 seconds
-        
-        // Initialize
-        updateCarousel();
-    }
+    // Partners Carousel - CSS Animation Only (no JavaScript needed)
     
     // Service buttons
     const serviceButtons = document.querySelectorAll('.service-button');
