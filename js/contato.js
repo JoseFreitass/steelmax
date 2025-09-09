@@ -1,12 +1,14 @@
-// Navegação ativa e funcionalidades da página de contato
+// JavaScript simplificado para página de contato
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Contato JS carregado');
+    
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const contactForm = document.getElementById('contactForm');
     
     // Toggle do menu hambúrguer
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
+        hamburger.addEventListener('click', function() {
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -14,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fechar menu ao clicar em um link
     const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
             if (hamburger && navMenu) {
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
@@ -24,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Fechar menu ao clicar fora dele
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function(e) {
         if (hamburger && navMenu && 
             !hamburger.contains(e.target) && 
             !navMenu.contains(e.target)) {
@@ -33,154 +35,57 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Funcionalidade do formulário de contato
+    // Formulário de contato - envio real
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+            console.log('Formulário sendo enviado para devjosefreitas@gmail.com');
             
-            // Validar campos obrigatórios
+            // Validação básica
             const requiredFields = contactForm.querySelectorAll('[required]');
             let isValid = true;
-            let firstInvalidField = null;
             
-            // Remover mensagens anteriores
-            const existingMessage = document.querySelector('.form-message');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
-            
-            // Validar cada campo obrigatório
-            requiredFields.forEach(field => {
+            requiredFields.forEach(function(field) {
                 if (!field.value.trim()) {
                     isValid = false;
-                    field.style.borderColor = '#333333';
-                    if (!firstInvalidField) {
-                        firstInvalidField = field;
-                    }
+                    field.style.borderColor = '#ff0000';
                 } else {
                     field.style.borderColor = '#e9ecef';
                 }
                 
-                // Validação específica para email
+                // Validação de email
                 if (field.type === 'email' && field.value.trim()) {
                     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailRegex.test(field.value.trim())) {
                         isValid = false;
-                        field.style.borderColor = '#333333';
-                        if (!firstInvalidField) {
-                            firstInvalidField = field;
-                        }
-                    }
-                }
-                
-                // Validação para telefone
-                if (field.type === 'tel' && field.value.trim()) {
-                    const phoneRegex = /^[\(\)\s\-\+\d]{10,}$/;
-                    if (!phoneRegex.test(field.value.trim())) {
-                        isValid = false;
-                        field.style.borderColor = '#333333';
-                        if (!firstInvalidField) {
-                            firstInvalidField = field;
-                        }
+                        field.style.borderColor = '#ff0000';
                     }
                 }
             });
             
             if (!isValid) {
-                showMessage('Por favor, preencha todos os campos obrigatórios corretamente.', 'error');
-                if (firstInvalidField) {
-                    firstInvalidField.focus();
-                }
+                e.preventDefault();
+                alert('Por favor, preencha todos os campos obrigatórios corretamente.');
                 return;
             }
             
-            // Simular envio do formulário
+            // Mostrar loading e permitir envio
             const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.querySelector('span').textContent;
-            
-            // Loading state
-            submitBtn.disabled = true;
-            submitBtn.querySelector('span').textContent = 'Enviando...';
-            submitBtn.style.opacity = '0.7';
-            
-            // Simular delay de envio
-            setTimeout(() => {
-                // Resetar formulário
-                contactForm.reset();
-                
-                // Resetar estilos dos campos
-                requiredFields.forEach(field => {
-                    field.style.borderColor = '#e9ecef';
-                });
-                
-                // Mostrar mensagem de sucesso
-                showMessage('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
-                
-                // Resetar botão
-                submitBtn.disabled = false;
-                submitBtn.querySelector('span').textContent = originalText;
-                submitBtn.style.opacity = '1';
-                
-                // Scroll para o topo do formulário para mostrar a mensagem
-                contactForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-            }, 2000);
-        });
-    }
-    
-    // Função para mostrar mensagens
-    function showMessage(text, type) {
-        // Remover mensagem anterior se existir
-        const existingMessage = document.querySelector('.form-message');
-        if (existingMessage) {
-            existingMessage.remove();
-        }
-        
-        // Criar nova mensagem
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `form-message ${type}`;
-        messageDiv.textContent = text;
-        messageDiv.style.display = 'block';
-        
-        // Inserir no início do formulário
-        contactForm.insertBefore(messageDiv, contactForm.firstChild);
-        
-        // Auto-remove após 5 segundos se for mensagem de sucesso
-        if (type === 'success') {
-            setTimeout(() => {
-                if (messageDiv.parentNode) {
-                    messageDiv.style.opacity = '0';
-                    setTimeout(() => {
-                        if (messageDiv.parentNode) {
-                            messageDiv.remove();
-                        }
-                    }, 300);
+            if (submitBtn) {
+                const span = submitBtn.querySelector('span');
+                if (span) {
+                    span.textContent = 'Enviando...';
                 }
-            }, 5000);
-        }
+                submitBtn.disabled = true;
+            }
+            
+            // Feedback após envio
+            setTimeout(function() {
+                alert('Mensagem enviada com sucesso! Verifique sua caixa de entrada.');
+            }, 1000);
+        });
     }
     
-    // Animação dos campos ao focar
-    const formFields = document.querySelectorAll('.form-field input, .form-field textarea, .form-field select');
-    formFields.forEach(field => {
-        field.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'translateY(-2px)';
-            this.parentElement.style.transition = 'transform 0.3s ease';
-        });
-        
-        field.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'translateY(0)';
-        });
-        
-        // Limpar estilo de erro ao digitar
-        field.addEventListener('input', function() {
-            if (this.style.borderColor === 'rgb(51, 51, 51)') {
-                this.style.borderColor = '#e9ecef';
-            }
-        });
-    });
-    
-    // Máscara para telefone
+    // Formatação de telefone
     const phoneField = document.getElementById('phone');
     if (phoneField) {
         phoneField.addEventListener('input', function(e) {
@@ -196,15 +101,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     value = value.replace(/(\d{2})(\d{5})(\d{0,4})/, '($1) $2-$3');
                 }
+                
+                e.target.value = value;
             }
-            
-            e.target.value = value;
         });
     }
     
-    // Smooth scroll para links internos
+    // Efeitos visuais nos campos
+    const formFields = document.querySelectorAll('.form-field input, .form-field textarea, .form-field select');
+    formFields.forEach(function(field) {
+        field.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'translateY(-2px)';
+            this.parentElement.style.transition = 'transform 0.3s ease';
+        });
+        
+        field.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Scroll suave para links internos
     const internalLinks = document.querySelectorAll('a[href^="#"]');
-    internalLinks.forEach(link => {
+    internalLinks.forEach(function(link) {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
