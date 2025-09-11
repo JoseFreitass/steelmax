@@ -121,7 +121,6 @@ body {
 .hero-stats-section {
     padding: 4rem 0;
     background: transparent;
-    margin-top: 80px;
     position: relative;
     z-index: 0;
 }
@@ -429,14 +428,16 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 800px;
+    height: 80vh;
+    min-height: 700px;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1;
+    padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 .hero-background {
@@ -659,7 +660,7 @@ body {
 
 .benefits-title {
     font-family: 'Kanit', sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: #333;
     margin-bottom: 1rem;
@@ -862,7 +863,7 @@ body {
 .about {
     position: relative;
     height: 600px;
-    margin: 280px auto 120px auto;
+    margin: 80px auto 30px auto;
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -878,7 +879,7 @@ body {
 
 .section-label {
     font-family: 'Kanit', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     color: #32CD32;
     text-transform: uppercase;
@@ -932,8 +933,8 @@ body {
 
 .about-images {
     position: relative;
-    width: 500px;
-    height: 600px;
+    width: 700px;
+    height: 400px;
 }
 
 .about-video-overlay {
@@ -1004,7 +1005,7 @@ body {
 .services {
     position: relative;
     padding: 100px 0;
-    margin-top: 100px;
+    margin-top: 30px;
     max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
@@ -1133,6 +1134,28 @@ body {
 
 .service-button:hover svg {
     color: white;
+}
+
+/* Service Cards Background Images */
+.steelmax-card {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../src/casa1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.metalmax-card {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../src/metal1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.connectmax-card {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../src/b1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Projects Section */
@@ -1408,8 +1431,8 @@ body {
 
 .partner-slide {
     flex: 0 0 auto;
-    width: 180px;
-    height: 100px;
+    width: 220px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1425,8 +1448,8 @@ body {
 }
 
 .partner-logo {
-    max-width: 80%;
-    max-height: 80%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain;
     filter: grayscale(100%);
     transition: filter 0.3s ease;
@@ -1531,7 +1554,7 @@ body {
 /* Container */
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 0 2rem;
 }
 
@@ -1958,20 +1981,24 @@ body {
 
 @media (max-width: 768px) {
     .hero {
-        height: auto;
-        min-height: 100vh;
+        height: 65vh;
+        min-height: 550px;
         flex-direction: column;
         padding: 1rem;
     }
     
     .hero-content {
-        position: relative;
-        top: 20%;
-        left: auto;
-        transform: none;
+        position: absolute;
+        top: 180px;
+        left: 50%;
+        transform: translateX(-50%);
         width: 100%;
         text-align: center;
-        padding: 2rem 0;
+        padding: 0 2rem;
+        bottom: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .hero-title {
@@ -2066,11 +2093,15 @@ body {
 @media (max-width: 1200px) and (min-width: 769px) {
     .hero-content {
         position: absolute;
-        top: 50%;
+        top: 220px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         width: 85%;
         text-align: center;
+        bottom: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .hero-title {
@@ -2111,9 +2142,9 @@ body {
         display: flex;
         flex-direction: column;
         gap: 40px;
-        padding: 60px 40px;
+        padding: 60px 20px;
         align-items: center;
-        margin: 200px auto 100px auto;
+        margin: 250px auto 100px auto;
     }
     
     .about-content {
@@ -2125,18 +2156,19 @@ body {
     .about-images {
         order: 2;
         width: 100%;
-        max-width: 500px;
-        height: 400px;
+        max-width: 100%;
+        height: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 auto;
+        padding: 0 10px;
     }
     
     .about-video-overlay {
         position: relative;
-        width: 400px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -2173,11 +2205,15 @@ body {
     
     .hero-content {
         position: absolute;
-        top: 50%;
+        top: 220px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         width: 90%;
         text-align: center;
+        bottom: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .hero-title {
@@ -2230,7 +2266,7 @@ body {
     .about {
         padding: 50px;
         flex-direction: column;
-        margin: 160px auto 80px auto;
+        margin: 200px auto 80px auto;
     }
     
     .projects {
@@ -2323,19 +2359,19 @@ body {
     }
     
     .hero {
-        height: auto;
-        min-height: 100vh;
+        height: 50vh;
+        min-height: 400px;
     }
     
     .hero-background {
-        height: 100vh;
+        height: 60vh;
     }
     
     .hero-content {
         left: 20px;
         right: 20px;
         width: auto;
-        top: 50%;
+        top: 60%;
         transform: translateY(-50%);
     }
     
@@ -2368,19 +2404,20 @@ body {
     
     .about {
         height: auto;
-        padding: 50px 20px;
+        padding: 50px 10px;
         flex-direction: column;
         gap: 30px;
-        margin: 140px auto 60px auto;
+        margin: 50px 0px 0px 0px;
     }
     
     .about-images {
         width: 100%;
-        height: 300px;
+        height: 180px;
         display: flex;
         justify-content: center;
         align-items: center;
         order: 2;
+        padding: 0 5px;
     }
     
     .about-content {
@@ -2389,8 +2426,8 @@ body {
     }
     
     .about-video-overlay {
-        width: 280px;
-        height: 280px;
+        width: 100%;
+        height: 180px;
     }
     
     .about-img2 {
@@ -2419,16 +2456,17 @@ body {
     
     .about-images {
         width: 100%;
-        height: 400px;
+        height: 250px;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 10px;
     }
     
     .about-video-overlay {
         position: relative;
-        width: 350px;
-        height: 350px;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -2483,7 +2521,7 @@ body {
     }
     
     .section-label {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         margin-bottom: 1rem;
     }
     
@@ -2601,7 +2639,7 @@ body {
 @media (max-width: 768px) {
   .services {
     padding: 80px 20px;
-    margin-top: 80px;
+    margin-top: 0px;
   }
   
   .services-grid {
@@ -2709,19 +2747,29 @@ body {
   }
 }
 
+@media (max-width: 484px) {
+  .hero {
+    height: 60vh;
+    min-height: 500px;
+  }
+  
+  .about-img1 .about-image1 {
+    content: url('../src/b1.jpg');
+  }
+}
+
 @media (max-width: 455px) {
   .hero {
-    min-height: 100vh;
-    height: 100vh;
+    height: 55vh;
+    min-height: 450px;
   }
   
   .hero-stats-section {
-    margin-top: 80px;
     padding: 3rem 0;
   }
   
   .about {
-    margin: 120px auto 50px auto;
+    margin: 150px auto 50px auto;
     flex-direction: column;
     gap: 20px;
     padding: 40px 15px;
@@ -2729,7 +2777,7 @@ body {
   
   .about-images {
     width: 100%;
-    height: 250px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -2742,13 +2790,17 @@ body {
   }
   
   .about-video-overlay {
-    width: 240px;
-    height: 240px;
+    width: 100%;
+    height: 200px;
   }
   
   .about-img1 {
     width: 100%;
     height: 100%;
+  }
+  
+  .about-img1 .about-image1 {
+    content: url('../src/b1.jpg');
   }
   
   .about-img2 {
@@ -2823,11 +2875,15 @@ body {
   
   .hero-content {
     position: absolute;
-    top: 50%;
+    top: 200px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     width: 90%;
-    padding-top: 0;
+    padding: 0 1rem;
+    bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   
   .hero-title {
@@ -2870,7 +2926,7 @@ body {
   }
   
   .section-label {
-    font-size: 0.8rem;
+    font-size: 1rem;
     margin-bottom: 0.8rem;
   }
   
