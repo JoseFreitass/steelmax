@@ -35,10 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Formulário de contato - envio real
+    // Inicializar EmailJS
+    (function() {
+        emailjs.init("39SOTBdgPQobUQYzD");
+    })();
+
+    // Formulário de contato - envio com EmailJS
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            console.log('Formulário sendo enviado para devjosefreitas@gmail.com');
+            e.preventDefault();
             
             // Validação básica
             const requiredFields = contactForm.querySelectorAll('[required]');
@@ -63,12 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             if (!isValid) {
-                e.preventDefault();
                 alert('Por favor, preencha todos os campos obrigatórios corretamente.');
                 return;
             }
             
-            // Mostrar loading e permitir envio
+            // Mostrar loading
             const submitBtn = contactForm.querySelector('.submit-btn');
             if (submitBtn) {
                 const span = submitBtn.querySelector('span');
@@ -78,10 +82,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.disabled = true;
             }
             
-            // Feedback após envio
-            setTimeout(function() {
-                alert('Mensagem enviada com sucesso! Verifique sua caixa de entrada.');
-            }, 1000);
+            // Preparar dados do formulário
+            const formData = {
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                title: document.getElementById('service').value,
+                message: document.getElementById('message').value,
+                time: new Date().toLocaleString('pt-BR')
+            };
+            
+            // Enviar email usando EmailJS
+            emailjs.send('service_tyc0ark', 'template_639q598', formData)
+                .then(function(response) {
+                    console.log('Email enviado com sucesso!', response.status, response.text);
+                    showSuccessNotification();
+                }, function(error) {
+                    console.error('Erro ao enviar email:', error);
+                    showErrorNotification();
+                })
+                .finally(function() {
+                    // Restaurar botão
+                    if (submitBtn) {
+                        const span = submitBtn.querySelector('span');
+                        if (span) {
+                            span.textContent = 'Enviar Mensagem';
+                        }
+                        submitBtn.disabled = false;
+                    }
+                });
         });
     }
     
@@ -136,4 +165,157 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Função para mostrar notificação de sucesso
+    function showSuccessNotification() {
+        // Criar overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        // Criar modal de sucesso
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        `;
+        
+        modal.innerHTML = `
+            <div style="color: #32CD32; font-size: 60px; margin-bottom: 20px;">✓</div>
+            <h2 style="color: #2c3e50; margin: 0 0 15px 0; font-family: 'Kanit', sans-serif;">Mensagem Enviada!</h2>
+            <p style="color: #666; margin: 0 0 25px 0; line-height: 1.5;">
+                Sua mensagem foi enviada com sucesso!<br>
+                Entraremos em contato em breve.
+            </p>
+            <button id="successBtn" style="
+                background: #32CD32;
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            ">Voltar ao Início</button>
+        `;
+        
+        // Adicionar animação CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px) scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        
+        // Limpar formulário
+        contactForm.reset();
+        
+        // Evento do botão
+        document.getElementById('successBtn').addEventListener('click', function() {
+            document.body.removeChild(overlay);
+            window.location.href = 'index.html';
+        });
+        
+        // Fechar ao clicar no overlay
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+                window.location.href = 'index.html';
+            }
+        });
+    }
+    
+    // Função para mostrar notificação de erro
+    function showErrorNotification() {
+        // Criar overlay
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        // Criar modal de erro
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease-out;
+        `;
+        
+        modal.innerHTML = `
+            <div style="color: #e74c3c; font-size: 60px; margin-bottom: 20px;">⚠</div>
+            <h2 style="color: #2c3e50; margin: 0 0 15px 0; font-family: 'Kanit', sans-serif;">Ops! Algo deu errado</h2>
+            <p style="color: #666; margin: 0 0 25px 0; line-height: 1.5;">
+                Não foi possível enviar sua mensagem.<br>
+                Tente novamente ou entre em contato pelo telefone (15) 99720-7828
+            </p>
+            <button id="errorBtn" style="
+                background: #e74c3c;
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 6px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            ">Tentar Novamente</button>
+        `;
+        
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        
+        // Evento do botão
+        document.getElementById('errorBtn').addEventListener('click', function() {
+            document.body.removeChild(overlay);
+        });
+        
+        // Fechar ao clicar no overlay
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+    }
 });
