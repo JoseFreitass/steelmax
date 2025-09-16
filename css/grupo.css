@@ -265,8 +265,25 @@ body {
     font-family: 'Kanit', sans-serif;
     font-size: 2.1rem;
     font-weight: 600;
-    color: white;
+    color: white !important;
     line-height: 1.2;
+    text-decoration: none;
+}
+
+.footer-phone:visited {
+    color: white !important;
+}
+
+.footer-phone:link {
+    color: white !important;
+}
+
+.footer-phone:hover {
+    color: white !important;
+}
+
+.footer-phone:active {
+    color: white !important;
 }
 
 .social-icons {
@@ -1036,7 +1053,7 @@ body {
   }
   
   .grupo-max-content {
-    padding: 0 0px;
+    padding: 40px 20px;
   }
   
   .grupo-max-title {
