@@ -294,6 +294,7 @@ body {
     color: rgba(235, 236, 237, 1);
     line-height: 1.6;
     max-width: 400px;
+    text-align: left;
 }
 
 .footer-links {
@@ -578,6 +579,16 @@ body {
     
     .nav-list {
         flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 1rem 0;
+    }
+    
+    .nav-list {
+        flex-direction: column;
         gap: 1.5rem;
     }
     
@@ -644,6 +655,10 @@ body {
     
     .company-title {
         font-size: 2rem;
+    }
+    
+    .footer-links {
+        display: none !important;
     }
 }
 

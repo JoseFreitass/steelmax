@@ -376,6 +376,7 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    opacity: 0.7;
 }
 
 .project-overlay {
@@ -389,17 +390,10 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     padding: 1.5rem;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
-.related-project:hover .project-overlay {
-    opacity: 1;
-}
-
-.related-project:hover .project-image img {
-    transform: scale(1.1);
-}
 
 .project-overlay h4 {
     color: #ffffff;
@@ -511,6 +505,7 @@ body {
     color: rgba(235, 236, 237, 1);
     line-height: 1.6;
     max-width: 400px;
+    text-align: left;
 }
 
 .footer-links {
@@ -604,6 +599,7 @@ body {
         grid-template-columns: 1fr;
         justify-self: center;
         text-align: center;
+        display: none !important;
     }
     
     .footer-column {
@@ -642,12 +638,36 @@ body {
 }
 
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-    }
-    
     .hamburger {
         display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 80px;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        padding: 2rem 0;
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 1rem 0;
     }
     
     .container {
@@ -676,6 +696,7 @@ body {
         grid-template-columns: 1fr;
         gap: 2.5rem;
         justify-self: center;
+        display: none !important;
     }
     
     .footer-about {
@@ -720,6 +741,7 @@ body {
     
     .footer-links {
         gap: 2rem;
+        display: none !important;
     }
     
     .footer-about {
@@ -758,5 +780,9 @@ body {
     
     .footer-bottom p {
         font-size: 1rem;
+    }
+    
+    .footer-links {
+        display: none !important;
     }
 }

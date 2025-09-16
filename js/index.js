@@ -1,5 +1,18 @@
 // JavaScript para a página principal SteelMax
 document.addEventListener('DOMContentLoaded', function() {
+    // Garantir que a página carregue sempre no topo
+    window.scrollTo(0, 0);
+    
+    // Garantir que o scroll fique no topo em qualquer situação
+    window.addEventListener('beforeunload', function() {
+        window.scrollTo(0, 0);
+    });
+    
+    // Garantir que o scroll fique no topo quando a página for carregada
+    window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+    });
+    
     const navLinks = document.querySelectorAll('.nav-link');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -268,6 +281,53 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(phone);
     }
     
+    // Scroll Animation for Sections
+    function initScrollAnimation() {
+        const sections = document.querySelectorAll('.about, .benefits-section, .team-section, .equipe-max-section, .cta-section');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    }
+    
+    // Initialize scroll animation
+    initScrollAnimation();
+    
+    // Hero text animation on page load
+    function initHeroAnimation() {
+        // Animate counter numbers
+        const statNumbers = document.querySelectorAll('.hero-stat .stat-number');
+        statNumbers.forEach((stat, index) => {
+            const finalValue = stat.textContent;
+            const isPlus = finalValue.includes('+');
+            const numericValue = parseInt(finalValue.replace(/\D/g, ''));
+            
+            stat.textContent = '0';
+            stat.style.opacity = '0';
+            
+            setTimeout(() => {
+                stat.style.opacity = '1';
+                animateCounter(stat, 0, numericValue, 2000, isPlus ? '+' : '');
+            }, 1500 + (index * 200));
+        });
+    }
+    
+    // Initialize hero animation
+    initHeroAnimation();
+    
     // Expose utilities globally
     window.SteelMaxUtils = {
         smoothScroll,
@@ -278,5 +338,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Console log for development
     console.log('SteelMax - Página Principal Carregada com Sucesso! 🏗️');
-    console.log('Funcionalidades ativas: Navegação, Animações, Carrosséis, Contadores');
+    console.log('Funcionalidades ativas: Navegação, Animações, Carrosséis, Contadores, Scroll Animation');
 });

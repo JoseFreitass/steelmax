@@ -1283,6 +1283,7 @@ body {
     color: rgba(235, 236, 237, 1);
     line-height: 1.6;
     max-width: 400px;
+    text-align: left;
 }
 
 .footer-links {
@@ -1401,6 +1402,7 @@ body {
         grid-template-columns: 1fr;
         justify-self: center;
         text-align: center;
+        display: none !important;
     }
     
     .footer-column {
@@ -1468,6 +1470,7 @@ body {
     
     .footer-links {
         grid-template-columns: repeat(2, 1fr);
+        display: none !important;
     }
     
     .about-title {
@@ -1627,6 +1630,7 @@ body {
     .footer-links {
         grid-template-columns: 1fr;
         gap: 2rem;
+        display: none !important;
     }
     
     .footer-about {
@@ -1785,5 +1789,9 @@ body {
     
     .call-number {
         font-size: 1.8rem;
+    }
+    
+    .footer-links {
+        display: none !important;
     }
 }
