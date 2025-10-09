@@ -13,6 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo(0, 0);
     });
     
+    // Verificar se a imagem mobile dos projetos carregou corretamente
+    const mobileProjectImage = document.querySelector('.project-mobile .project-image');
+    if (mobileProjectImage) {
+        mobileProjectImage.addEventListener('error', function() {
+            // Se a imagem falhar, usar uma das imagens existentes como fallback
+            this.src = 'src/casa1.png';
+            this.alt = 'Projetos SteelMax';
+        });
+        
+        // Verificar se a imagem já carregou
+        if (mobileProjectImage.complete && mobileProjectImage.naturalHeight === 0) {
+            mobileProjectImage.src = 'src/casa1.png';
+            mobileProjectImage.alt = 'Projetos SteelMax';
+        }
+    }
+    
     const navLinks = document.querySelectorAll('.nav-link');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
