@@ -3098,8 +3098,7 @@ body {
     height: 60vh;
     min-height: 500px;
   }
-  
-  .about-video-container }
+}
 
 @media (max-width: 455px) {
   .hero {
